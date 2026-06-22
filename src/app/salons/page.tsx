@@ -1,5 +1,6 @@
 import { Navbar } from '@/components/layout/Navbar';
 import SalonListings from '@/components/salons/SalonListings';
+import CategoryFilter from '@/components/salons/CategoryFilter';
 import { Search, SlidersHorizontal } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
@@ -8,7 +9,7 @@ export default function SalonsPage() {
   return (
     <div className="min-h-screen">
       <Navbar />
-      <main className="pt-24 pb-20 px-6 max-w-7xl mx-auto">
+      <main className="pt-20 pb-20 px-6 max-w-7xl mx-auto">
         <header className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
           <div className="space-y-2">
             <h1 className="font-headline text-4xl font-bold">Recommended Salons</h1>
@@ -26,6 +27,7 @@ export default function SalonsPage() {
           </div>
         </header>
 
+        <CategoryFilter />
         <SalonListings />
       </main>
     </div>
