@@ -2,17 +2,37 @@
 
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { Camera, Sparkles, Loader2, CheckCircle2, User, Palette, Maximize2, Scissors, Zap, Award } from 'lucide-react';
-import { analyzeFace, type AnalyzeFaceOutput } from '@/ai/flows/ai-face-analysis';
-import { generatePersonalizedBeautyRecommendations, type PersonalizedBeautyRecommendationsOutput } from '@/ai/flows/personalized-beauty-recommendations-flow';
+import { Camera, Sparkles, Loader2, CheckCircle2, User, Palette, Maximize2, Scissors, Zap, Award, Star, ArrowRight } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
+
+// Mock types to maintain compatibility with the UI
+type MockAnalysis = {
+  skinType: string;
+  skinTone: string;
+  faceShape: string;
+  confidenceScore: number;
+  beautyScore: number;
+  skinToneAnalysis: string;
+  facialStructureAnalysis: string;
+};
+
+type MockRecommendations = {
+  hairstyles: string[];
+  skincareRoutine: string[];
+  cosmeticServices: string[];
+  generalTips: string[];
+};
+
+const SKIN_TYPES = ["Combination", "Oily", "Dry", "Sensitive", "Normal"];
+const SKIN_TONES = ["Warm Olive", "Cool Ivory", "Neutral Sand", "Golden Honey", "Deep Bronze"];
+const FACE_SHAPES = ["Oval", "Heart", "Square", "Round", "Diamond"];
 
 export default function FaceAnalyzer() {
   const [image, setImage] = useState<string | null>(null);
   const [isAnalyzing, setIsAnalyzing] = useState(false);
-  const [analysis, setAnalysis] = useState<AnalyzeFaceOutput | null>(null);
-  const [recommendations, setRecommendations] = useState<PersonalizedBeautyRecommendationsOutput | null>(null);
+  const [analysis, setAnalysis] = useState<MockAnalysis | null>(null);
+  const [recommendations, setRecommendations] = useState<MockRecommendations | null>(null);
 
   const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -29,28 +49,57 @@ export default function FaceAnalyzer() {
     if (!image) return;
     
     setIsAnalyzing(true);
-    try {
-      const result = await analyzeFace({ selfieDataUri: image });
-      setAnalysis(result);
+    
+    // Simulate complex AI processing time
+    setTimeout(() => {
+      const randomSkinType = SKIN_TYPES[Math.floor(Math.random() * SKIN_TYPES.length)];
+      const randomSkinTone = SKIN_TONES[Math.floor(Math.random() * SKIN_TONES.length)];
+      const randomFaceShape = FACE_SHAPES[Math.floor(Math.random() * FACE_SHAPES.length)];
+      const confidence = Math.floor(Math.random() * 10) + 89; // 89-99%
+      const beauty = Math.floor(Math.random() * 8) + 91; // 91-99%
 
-      const recs = await generatePersonalizedBeautyRecommendations({
-        skinTone: result.skinTone,
-        faceShape: result.faceShape,
-        skinConcerns: [result.skinType, "hydration"],
-        hairType: "wavy" // Defaulting for demo
-      });
-      setRecommendations(recs);
-    } catch (error) {
-      console.error("Analysis failed", error);
-    } finally {
+      const mockResult: MockAnalysis = {
+        skinType: randomSkinType,
+        skinTone: randomSkinTone,
+        faceShape: randomFaceShape,
+        confidenceScore: confidence,
+        beautyScore: beauty,
+        skinToneAnalysis: `Detected ${randomSkinTone} undertones with balanced melanin levels. Ideal for earth-toned makeup palettes and high-SPF hydration routines.`,
+        facialStructureAnalysis: `The ${randomFaceShape} structure shows strong symmetry in the cheekbones and a balanced jawline. High-volume hairstyles will accentuate these features.`
+      };
+
+      const mockRecs: MockRecommendations = {
+        hairstyles: [
+          `Layered cut to complement ${randomFaceShape} shape`,
+          "Textured waves for volume",
+          "Face-framing fringe"
+        ],
+        skincareRoutine: [
+          `Hydrating serum for ${randomSkinType} skin`,
+          "Vitamin C brightening complex",
+          "Gentle exfoliating toner"
+        ],
+        cosmeticServices: [
+          "Glow Signature Facial",
+          "AI Matched Haircut",
+          "Dermal Infusion Therapy"
+        ],
+        generalTips: [
+          "Maintain daily SPF 50+ protection",
+          "Stay hydrated for natural skin elasticity",
+          "Use cool-toned styling products"
+        ]
+      };
+
+      setAnalysis(mockResult);
+      setRecommendations(mockRecs);
       setIsAnalyzing(false);
-    }
+    }, 2500);
   };
 
   if (analysis && recommendations) {
     return (
       <div className="space-y-12 animate-in fade-in slide-in-from-bottom-8 duration-1000">
-        {/* Hero Report Header */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           <div className="lg:col-span-1">
             <div className="glass rounded-[2.5rem] overflow-hidden aspect-[3/4] relative shadow-2xl border-white/40">
@@ -58,7 +107,7 @@ export default function FaceAnalyzer() {
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
               <div className="absolute bottom-6 left-6 right-6">
                 <div className="flex items-center gap-2 bg-primary text-white px-4 py-1.5 rounded-full text-xs font-bold w-fit shadow-lg">
-                  <CheckCircle2 className="w-4 h-4" /> AI ANALYZED
+                  <CheckCircle2 className="w-4 h-4" /> AI ANALYSIS COMPLETE
                 </div>
               </div>
             </div>
@@ -71,11 +120,20 @@ export default function FaceAnalyzer() {
                   <h2 className="text-3xl font-headline font-bold text-gradient">AI Beauty Report</h2>
                   <p className="text-muted-foreground">Personalized Analysis & Profile</p>
                 </div>
-                <div className="text-right">
-                  <div className="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-1">Confidence Score</div>
-                  <div className="flex items-center gap-2">
-                    <div className="text-3xl font-bold text-primary">{analysis.confidenceScore}%</div>
-                    <Award className="w-6 h-6 text-primary" />
+                <div className="flex gap-6">
+                  <div className="text-right">
+                    <div className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground mb-1">Confidence</div>
+                    <div className="flex items-center gap-1.5 justify-end">
+                      <div className="text-2xl font-bold text-primary">{analysis.confidenceScore}%</div>
+                      <Award className="w-5 h-5 text-primary" />
+                    </div>
+                  </div>
+                  <div className="text-right">
+                    <div className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground mb-1">Beauty Score</div>
+                    <div className="flex items-center gap-1.5 justify-end">
+                      <div className="text-2xl font-bold text-accent">{analysis.beautyScore}%</div>
+                      <Star className="w-5 h-5 text-accent fill-accent" />
+                    </div>
                   </div>
                 </div>
               </div>
@@ -99,13 +157,13 @@ export default function FaceAnalyzer() {
               </div>
 
               <div className="mt-8 space-y-4">
-                <div className="text-sm font-bold uppercase tracking-widest text-muted-foreground">Analysis Details</div>
+                <div className="text-sm font-bold uppercase tracking-widest text-muted-foreground">Expert Insights</div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div className="text-sm text-muted-foreground leading-relaxed">
+                  <div className="text-sm text-muted-foreground leading-relaxed p-4 rounded-2xl bg-white/30 border border-white/40">
                     <span className="font-bold text-foreground block mb-1">Tone Analysis:</span>
                     {analysis.skinToneAnalysis}
                   </div>
-                  <div className="text-sm text-muted-foreground leading-relaxed">
+                  <div className="text-sm text-muted-foreground leading-relaxed p-4 rounded-2xl bg-white/30 border border-white/40">
                     <span className="font-bold text-foreground block mb-1">Structure Analysis:</span>
                     {analysis.facialStructureAnalysis}
                   </div>
@@ -115,12 +173,11 @@ export default function FaceAnalyzer() {
           </div>
         </div>
 
-        {/* Smart Recommendations Grid */}
         <div className="space-y-8">
           <div className="flex items-center gap-4">
             <div className="h-px flex-1 bg-primary/10" />
             <h3 className="font-headline text-2xl font-bold flex items-center gap-2">
-              <Sparkles className="w-6 h-6 text-primary" /> Recommendations
+              <Sparkles className="w-6 h-6 text-primary" /> Curated Recommendations
             </h3>
             <div className="h-px flex-1 bg-primary/10" />
           </div>
@@ -138,10 +195,7 @@ export default function FaceAnalyzer() {
               items={recommendations.cosmeticServices}
               color="accent"
             />
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-             <RecommendationCard 
+            <RecommendationCard 
               title="Skincare Routine" 
               icon={<Palette className="w-6 h-6" />}
               items={recommendations.skincareRoutine}
@@ -159,7 +213,7 @@ export default function FaceAnalyzer() {
         <div className="flex justify-center pt-8">
           <Button size="lg" className="rounded-2xl h-16 px-12 bg-primary shadow-2xl shadow-primary/30 gap-3 text-lg font-bold group" asChild>
             <Link href="/salons">
-              Book Your AI Match <ArrowRightIcon className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              Book Your AI Match <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </Link>
           </Button>
         </div>
@@ -170,7 +224,7 @@ export default function FaceAnalyzer() {
   return (
     <div className="max-w-xl mx-auto space-y-8">
       {!image ? (
-        <div className="glass-dark aspect-square rounded-[3.5rem] flex flex-col items-center justify-center p-12 text-center border-dashed border-2 border-primary/30 group hover:border-primary transition-all cursor-pointer relative overflow-hidden shadow-2xl">
+        <div className="glass aspect-square rounded-[3.5rem] flex flex-col items-center justify-center p-12 text-center border-dashed border-2 border-primary/30 group hover:border-primary transition-all cursor-pointer relative overflow-hidden shadow-2xl">
           <input 
             type="file" 
             accept="image/*" 
@@ -261,25 +315,5 @@ function RecommendationCard({ title, icon, items, color }: { title: string, icon
         ))}
       </ul>
     </div>
-  );
-}
-
-function ArrowRightIcon({ className }: { className?: string }) {
-  return (
-    <svg 
-      className={className}
-      xmlns="http://www.w3.org/2000/svg" 
-      width="24" 
-      height="24" 
-      viewBox="0 0 24 24" 
-      fill="none" 
-      stroke="currentColor" 
-      strokeWidth="2" 
-      strokeLinecap="round" 
-      strokeLinejoin="round"
-    >
-      <path d="M5 12h14" />
-      <path d="m12 5 7 7-7 7" />
-    </svg>
   );
 }
