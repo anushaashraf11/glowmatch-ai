@@ -1,11 +1,10 @@
 "use client";
 
 import { useEffect, useState } from 'react';
-import Image from 'next/image';
-import { Star, MapPin, Clock, ArrowRight, Navigation } from 'lucide-react';
+import { Star, MapPin, Clock, ArrowRight, Navigation, Scissors, Sparkles, Flower2, Palette, Heart, Droplets, Zap } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { PlaceHolderImages } from '@/lib/placeholder-images';
 import Link from 'next/link';
+import { cn } from '@/lib/utils';
 
 interface Salon {
   id: string;
@@ -15,9 +14,9 @@ interface Salon {
   lat: number;
   lng: number;
   tags: string[];
-  image: string;
-  imageHint: string;
   address: string;
+  icon: React.ElementType;
+  gradient: string;
 }
 
 interface SalonWithDistance extends Salon {
@@ -35,9 +34,9 @@ const MOCK_SALONS: Salon[] = [
     lat: 17.4326,
     lng: 78.4071,
     tags: ['Luxury Spa', 'Skin Care', 'Bridal'],
-    image: PlaceHolderImages.find(img => img.id === 'mirrors-luxury')?.imageUrl || '',
-    imageHint: PlaceHolderImages.find(img => img.id === 'mirrors-luxury')?.imageHint || 'luxury spa',
-    address: 'Jubilee Hills, Hyderabad'
+    address: 'Jubilee Hills, Hyderabad',
+    icon: Flower2,
+    gradient: 'from-pink-100 to-rose-200'
   },
   {
     id: '2',
@@ -47,9 +46,9 @@ const MOCK_SALONS: Salon[] = [
     lat: 17.4123,
     lng: 78.4324,
     tags: ['Haircut', 'Facials', 'Makeup'],
-    image: PlaceHolderImages.find(img => img.id === 'naturals-salon')?.imageUrl || '',
-    imageHint: PlaceHolderImages.find(img => img.id === 'naturals-salon')?.imageHint || 'beauty salon',
-    address: 'Banjara Hills, Hyderabad'
+    address: 'Banjara Hills, Hyderabad',
+    icon: Sparkles,
+    gradient: 'from-purple-100 to-indigo-200'
   },
   {
     id: '3',
@@ -59,9 +58,9 @@ const MOCK_SALONS: Salon[] = [
     lat: 17.4933,
     lng: 78.3914,
     tags: ['Eco Skincare', 'Hair Color', 'Spa'],
-    image: PlaceHolderImages.find(img => img.id === 'green-trends')?.imageUrl || '',
-    imageHint: PlaceHolderImages.find(img => img.id === 'green-trends')?.imageHint || 'facial treatment',
-    address: 'Kukatpally, Hyderabad'
+    address: 'Kukatpally, Hyderabad',
+    icon: Droplets,
+    gradient: 'from-emerald-50 to-teal-100'
   },
   {
     id: '4',
@@ -71,9 +70,9 @@ const MOCK_SALONS: Salon[] = [
     lat: 17.4448,
     lng: 78.3498,
     tags: ['Global Styling', 'Advanced Color'],
-    image: PlaceHolderImages.find(img => img.id === 'toni-guy')?.imageUrl || '',
-    imageHint: PlaceHolderImages.find(img => img.id === 'toni-guy')?.imageHint || 'hair styling',
-    address: 'Gachibowli, Hyderabad'
+    address: 'Gachibowli, Hyderabad',
+    icon: Scissors,
+    gradient: 'from-slate-100 to-blue-200'
   },
   {
     id: '5',
@@ -83,9 +82,9 @@ const MOCK_SALONS: Salon[] = [
     lat: 17.3993,
     lng: 78.4842,
     tags: ['Hair Design', 'Bridal Makeup'],
-    image: PlaceHolderImages.find(img => img.id === 'jawed-habib')?.imageUrl || '',
-    imageHint: PlaceHolderImages.find(img => img.id === 'jawed-habib')?.imageHint || 'hair stylist',
-    address: 'Himayat Nagar, Hyderabad'
+    address: 'Himayat Nagar, Hyderabad',
+    icon: Scissors,
+    gradient: 'from-orange-50 to-amber-100'
   },
   {
     id: '6',
@@ -95,9 +94,9 @@ const MOCK_SALONS: Salon[] = [
     lat: 17.4483,
     lng: 78.3915,
     tags: ['Lakme Expert', 'Makeover', 'Skin'],
-    image: PlaceHolderImages.find(img => img.id === 'lakme-salon')?.imageUrl || '',
-    imageHint: PlaceHolderImages.find(img => img.id === 'lakme-salon')?.imageHint || 'makeup artist',
-    address: 'Madhapur, Hyderabad'
+    address: 'Madhapur, Hyderabad',
+    icon: Palette,
+    gradient: 'from-violet-100 to-fuchsia-100'
   },
   {
     id: '7',
@@ -107,9 +106,9 @@ const MOCK_SALONS: Salon[] = [
     lat: 17.4623,
     lng: 78.3587,
     tags: ['Premium Spa', 'Wellness', 'Styling'],
-    image: PlaceHolderImages.find(img => img.id === 'bounce-salon')?.imageUrl || '',
-    imageHint: PlaceHolderImages.find(img => img.id === 'bounce-salon')?.imageHint || 'wellness spa',
-    address: 'Kondapur, Hyderabad'
+    address: 'Kondapur, Hyderabad',
+    icon: Zap,
+    gradient: 'from-sky-50 to-cyan-100'
   },
   {
     id: '8',
@@ -119,9 +118,9 @@ const MOCK_SALONS: Salon[] = [
     lat: 17.4150,
     lng: 78.4400,
     tags: ['Celebrity Style', 'Red Carpet', 'Nails'],
-    image: PlaceHolderImages.find(img => img.id === 'page3-salon')?.imageUrl || '',
-    imageHint: PlaceHolderImages.find(img => img.id === 'page3-salon')?.imageHint || 'bridal makeup',
-    address: 'Banjara Hills, Hyderabad'
+    address: 'Banjara Hills, Hyderabad',
+    icon: Heart,
+    gradient: 'from-pink-50 to-rose-100'
   }
 ];
 
@@ -180,59 +179,62 @@ export default function SalonListings() {
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-      {salons.map((salon) => (
-        <div key={salon.id} className="group glass rounded-[2rem] overflow-hidden flex flex-col hover:translate-y-[-4px] transition-all duration-300">
-          <div className="relative aspect-[16/10] overflow-hidden">
-            <Image 
-              src={salon.image} 
-              alt={salon.name} 
-              fill 
-              className="object-cover group-hover:scale-105 transition-transform duration-500"
-              data-ai-hint={salon.imageHint}
-            />
-            <div className="absolute top-4 left-4 glass rounded-full px-3 py-1 flex items-center gap-1.5 text-xs font-bold shadow-lg">
-              <Star className="w-3.5 h-3.5 fill-yellow-400 text-yellow-400" />
-              <span>{salon.rating} ({salon.reviews})</span>
+      {salons.map((salon) => {
+        const IconComponent = salon.icon;
+        
+        return (
+          <div key={salon.id} className="group glass rounded-[2rem] overflow-hidden flex flex-col hover:translate-y-[-4px] transition-all duration-300">
+            {/* Gradient Visual Header */}
+            <div className={cn("relative aspect-[16/10] bg-gradient-to-br flex items-center justify-center p-8", salon.gradient)}>
+              <div className="absolute inset-0 bg-white/30 backdrop-blur-[1px]" />
+              <div className="relative z-10 w-24 h-24 rounded-full bg-white/60 flex items-center justify-center shadow-xl border border-white group-hover:scale-110 transition-transform duration-500">
+                <IconComponent className="w-12 h-12 text-primary/80" />
+              </div>
+              
+              <div className="absolute top-4 left-4 glass-dark text-white rounded-full px-3 py-1.5 flex items-center gap-1.5 text-[10px] font-bold shadow-lg">
+                <Star className="w-3 h-3 fill-yellow-400 text-yellow-400" />
+                <span>{salon.rating} • {salon.reviews} reviews</span>
+              </div>
+              <div className="absolute top-4 right-4 glass text-primary rounded-full px-3 py-1.5 flex items-center gap-1.5 text-[10px] font-bold shadow-lg">
+                <Navigation className="w-3 h-3" />
+                <span>{salon.calculatedDistance}</span>
+              </div>
             </div>
-            <div className="absolute top-4 right-4 glass rounded-full px-3 py-1 flex items-center gap-1.5 text-xs font-bold shadow-lg">
-              <Navigation className="w-3 h-3 text-primary" />
-              <span>{salon.calculatedDistance}</span>
-            </div>
-          </div>
-          
-          <div className="p-6 flex-1 flex flex-col">
-            <div className="flex items-start justify-between mb-4">
-              <div>
-                <h3 className="font-headline text-xl font-bold mb-1">{salon.name}</h3>
-                <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
-                  <MapPin className="w-3 h-3 text-primary" />
-                  <span>{salon.address}</span>
+            
+            <div className="p-6 flex-1 flex flex-col">
+              <div className="flex items-start justify-between mb-4">
+                <div>
+                  <h3 className="font-headline text-xl font-bold mb-1 group-hover:text-primary transition-colors">{salon.name}</h3>
+                  <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
+                    <MapPin className="w-3 h-3 text-primary" />
+                    <span>{salon.address}</span>
+                  </div>
                 </div>
               </div>
-            </div>
 
-            <div className="flex flex-wrap gap-2 mb-6">
-              {salon.tags.map(tag => (
-                <span key={tag} className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-primary/10 text-primary border border-primary/10">
-                  {tag}
-                </span>
-              ))}
-            </div>
-
-            <div className="mt-auto pt-4 border-t border-primary/5 flex items-center justify-between">
-              <div className="flex items-center gap-2 text-xs font-medium text-muted-foreground">
-                <Clock className="w-3.5 h-3.5" />
-                <span>Available Today</span>
+              <div className="flex flex-wrap gap-2 mb-6">
+                {salon.tags.map(tag => (
+                  <span key={tag} className="text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-primary/5 text-primary/70 border border-primary/10">
+                    {tag}
+                  </span>
+                ))}
               </div>
-              <Link href={`/booking/${salon.id}`}>
-                <Button size="sm" className="rounded-xl px-4 gap-2 bg-primary hover:bg-primary/90">
-                  Book <ArrowRight className="w-4 h-4" />
-                </Button>
-              </Link>
+
+              <div className="mt-auto pt-4 border-t border-primary/5 flex items-center justify-between">
+                <div className="flex items-center gap-2 text-[11px] font-semibold text-muted-foreground">
+                  <Clock className="w-3.5 h-3.5 text-primary/60" />
+                  <span>Available Today</span>
+                </div>
+                <Link href={`/booking/${salon.id}`}>
+                  <Button size="sm" className="rounded-xl px-5 h-9 gap-2 bg-primary hover:bg-primary/90 shadow-lg shadow-primary/20">
+                    Book Now <ArrowRight className="w-3.5 h-3.5" />
+                  </Button>
+                </Link>
+              </div>
             </div>
           </div>
-        </div>
-      ))}
+        );
+      })}
     </div>
   );
 }
