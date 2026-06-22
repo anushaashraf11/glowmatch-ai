@@ -1,6 +1,6 @@
 import { Navbar } from '@/components/layout/Navbar';
 import { Button } from '@/components/ui/button';
-import { Sparkles, ArrowRight, Camera, Scissors, ShieldCheck } from 'lucide-react';
+import { Sparkles, ArrowRight, Camera, Scissors, ShieldCheck, Users, Target, Store, CheckCircle } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
@@ -74,6 +74,53 @@ export default function Home() {
                       <p className="text-sm text-muted-foreground">Orchid Skin Undertones Found</p>
                     </div>
                   </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Stats Section */}
+        <section className="pb-24 px-6 relative z-10">
+          <div className="max-w-6xl mx-auto glass rounded-[3.5rem] p-10 md:p-16 border-white/40 shadow-2xl relative overflow-hidden">
+            <div className="absolute top-0 right-0 -mr-20 -mt-20 w-64 h-64 bg-primary/10 blur-[100px] rounded-full" />
+            <div className="absolute bottom-0 left-0 -ml-20 -mb-20 w-64 h-64 bg-accent/10 blur-[100px] rounded-full" />
+            
+            <div className="relative grid grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
+              <div className="space-y-3">
+                <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
+                  <Users className="w-5 h-5 text-primary" />
+                </div>
+                <div className="space-y-1">
+                  <h3 className="text-3xl md:text-4xl font-bold font-headline text-gradient">10,000+</h3>
+                  <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground">Beauty Consultations</p>
+                </div>
+              </div>
+              <div className="space-y-3">
+                <div className="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center">
+                  <Store className="w-5 h-5 text-accent" />
+                </div>
+                <div className="space-y-1">
+                  <h3 className="text-3xl md:text-4xl font-bold font-headline text-gradient">500+</h3>
+                  <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground">Partner Salons</p>
+                </div>
+              </div>
+              <div className="space-y-3">
+                <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
+                  <Target className="w-5 h-5 text-primary" />
+                </div>
+                <div className="space-y-1">
+                  <h3 className="text-3xl md:text-4xl font-bold font-headline text-gradient">95%</h3>
+                  <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground">Accuracy Rate</p>
+                </div>
+              </div>
+              <div className="space-y-3">
+                <div className="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center">
+                  <CheckCircle className="w-5 h-5 text-accent" />
+                </div>
+                <div className="space-y-1">
+                  <h3 className="text-3xl md:text-4xl font-bold font-headline text-gradient">50,000+</h3>
+                  <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground">Bookings Completed</p>
                 </div>
               </div>
             </div>
