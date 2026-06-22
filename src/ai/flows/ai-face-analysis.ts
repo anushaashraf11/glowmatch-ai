@@ -20,6 +20,10 @@ const AnalyzeFaceInputSchema = z.object({
 export type AnalyzeFaceInput = z.infer<typeof AnalyzeFaceInputSchema>;
 
 const AnalyzeFaceOutputSchema = z.object({
+  skinType: z.string().describe("The user's detected skin type (e.g., Oily, Dry, Combination, Sensitive)."),
+  skinTone: z.string().describe("The user's skin tone and undertone (e.g., Cool Ivory, Warm Sand)."),
+  faceShape: z.string().describe("The user's face shape (e.g., Oval, Round, Square, Heart, Diamond)."),
+  confidenceScore: z.number().describe("AI's confidence score in the analysis as a percentage (0-100)."),
   skinToneAnalysis: z
     .string()
     .describe("A detailed analysis of the user's skin tone, including undertones and suggestions."),
@@ -27,11 +31,6 @@ const AnalyzeFaceOutputSchema = z.object({
     .string()
     .describe(
       "A detailed analysis of the user's facial structure, including face shape and key features."
-    ),
-  generalBeautyRecommendations: z
-    .string()
-    .describe(
-      "General beauty recommendations based on the analyzed skin tone and facial structure, such as suitable makeup shades, hairstyles, or skincare tips."
     ),
 });
 export type AnalyzeFaceOutput = z.infer<typeof AnalyzeFaceOutputSchema>;
@@ -44,12 +43,19 @@ const aiFaceAnalysisPrompt = ai.definePrompt({
   name: 'aiFaceAnalysisPrompt',
   input: {schema: AnalyzeFaceInputSchema},
   output: {schema: AnalyzeFaceOutputSchema},
-  prompt: `You are an expert AI beauty advisor. Your task is to analyze the provided selfie image and determine the user's skin tone and facial structure. Based on this analysis, provide general beauty recommendations.
+  prompt: `You are an expert AI beauty advisor. Your task is to analyze the provided selfie image and determine the user's skin tone, skin type, and facial structure. 
 
 Analyze the following selfie image:
 Photo: {{media url=selfieDataUri}}
 
-Provide your analysis and recommendations in the specified JSON format.`,
+In your analysis:
+1. Identify the exact Face Shape (Oval, Round, Square, Heart, Diamond, etc.).
+2. Determine Skin Type (Oily, Dry, Combination, etc.).
+3. Identify Skin Tone and Undertone (e.g., Fair with Cool Undertones).
+4. Provide a confidence score for your analysis.
+5. Elaborate on the skin tone and facial structure in the descriptive fields.
+
+Provide your analysis in the specified JSON format.`,
   model: 'googleai/gemini-1.5-flash-latest',
 });
 
