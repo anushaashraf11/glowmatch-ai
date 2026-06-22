@@ -2,57 +2,57 @@
   "placeholderImages": [
     {
       "id": "hero-beauty",
-      "description": "Luxury beauty salon interior with soft pink lighting",
-      "imageUrl": "https://picsum.photos/seed/beauty-hero-1/1200/800",
+      "description": "Luxury beauty salon interior with soft pink lighting and premium styling chairs",
+      "imageUrl": "https://picsum.photos/seed/beauty-hero-luxury/1200/800",
       "imageHint": "luxury salon"
     },
     {
       "id": "mirrors-luxury",
-      "description": "Mirrors Luxury Salon & Spa ultra-modern interior",
-      "imageUrl": "https://picsum.photos/seed/mirrors-hyd/600/400",
+      "description": "Mirrors Luxury Salon & Spa high-end interior styling station with marble finishes",
+      "imageUrl": "https://picsum.photos/seed/mirrors-luxury-hyd/600/400",
       "imageHint": "luxury spa"
     },
     {
-      "id": "naturals-salon",
-      "description": "Naturals Salon modern styling station",
-      "imageUrl": "https://picsum.photos/seed/naturals-hyd/600/400",
-      "imageHint": "modern salon"
-    },
-    {
-      "id": "green-trends",
-      "description": "Green Trends eco-friendly salon environment",
-      "imageUrl": "https://picsum.photos/seed/greentrends-hyd/600/400",
-      "imageHint": "eco salon"
-    },
-    {
       "id": "toni-guy",
-      "description": "Toni & Guy international style hair studio",
-      "imageUrl": "https://picsum.photos/seed/toni-guy-hyd/600/400",
-      "imageHint": "hair studio"
-    },
-    {
-      "id": "jawed-habib",
-      "description": "Jawed Habib professional hair care suite",
-      "imageUrl": "https://picsum.photos/seed/jawed-habib-hyd/600/400",
-      "imageHint": "hairdresser"
+      "description": "Toni & Guy professional hair studio with modern styling tools and sleek design",
+      "imageUrl": "https://picsum.photos/seed/toni-guy-hyd-studio/600/400",
+      "imageHint": "hair styling"
     },
     {
       "id": "lakme-salon",
-      "description": "Lakmé Salon beauty and makeup station",
-      "imageUrl": "https://picsum.photos/seed/lakme-hyd/600/400",
+      "description": "Lakmé Salon expert beauty station for professional makeup and bridal services",
+      "imageUrl": "https://picsum.photos/seed/lakme-hyd-beauty/600/400",
+      "imageHint": "makeup artist"
+    },
+    {
+      "id": "naturals-salon",
+      "description": "Naturals Salon modern haircare and facial treatment station",
+      "imageUrl": "https://picsum.photos/seed/naturals-hyd-salon/600/400",
       "imageHint": "beauty salon"
     },
     {
+      "id": "green-trends",
+      "description": "Green Trends eco-friendly skincare treatment room with natural lighting",
+      "imageUrl": "https://picsum.photos/seed/green-trends-hyd-facial/600/400",
+      "imageHint": "facial treatment"
+    },
+    {
+      "id": "jawed-habib",
+      "description": "Jawed Habib hair design suite featuring master styling and cutting",
+      "imageUrl": "https://picsum.photos/seed/jawed-habib-hyd-hair/600/400",
+      "imageHint": "hair stylist"
+    },
+    {
       "id": "bounce-salon",
-      "description": "Bounce Salon & Spa luxury treatment room",
-      "imageUrl": "https://picsum.photos/seed/bounce-hyd/600/400",
-      "imageHint": "premium spa"
+      "description": "Bounce Salon & Spa premium wellness room for massages and skin therapy",
+      "imageUrl": "https://picsum.photos/seed/bounce-hyd-spa/600/400",
+      "imageHint": "wellness spa"
     },
     {
       "id": "page3-salon",
-      "description": "Page 3 Luxury Salon high-end reception",
-      "imageUrl": "https://picsum.photos/seed/page3-hyd/600/400",
-      "imageHint": "luxury aesthetic"
+      "description": "Page 3 Luxury Salon high-end bridal makeup and nail art studio",
+      "imageUrl": "https://picsum.photos/seed/page3-hyd-luxury/600/400",
+      "imageHint": "bridal makeup"
     }
   ]
 }

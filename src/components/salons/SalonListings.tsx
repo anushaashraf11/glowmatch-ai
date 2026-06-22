@@ -36,7 +36,7 @@ const MOCK_SALONS: Salon[] = [
     lng: 78.4071,
     tags: ['Luxury Spa', 'Skin Care', 'Bridal'],
     image: PlaceHolderImages.find(img => img.id === 'mirrors-luxury')?.imageUrl || '',
-    imageHint: 'luxury spa interior',
+    imageHint: PlaceHolderImages.find(img => img.id === 'mirrors-luxury')?.imageHint || 'luxury spa',
     address: 'Jubilee Hills, Hyderabad'
   },
   {
@@ -48,7 +48,7 @@ const MOCK_SALONS: Salon[] = [
     lng: 78.4324,
     tags: ['Haircut', 'Facials', 'Makeup'],
     image: PlaceHolderImages.find(img => img.id === 'naturals-salon')?.imageUrl || '',
-    imageHint: 'modern hair salon',
+    imageHint: PlaceHolderImages.find(img => img.id === 'naturals-salon')?.imageHint || 'beauty salon',
     address: 'Banjara Hills, Hyderabad'
   },
   {
@@ -60,7 +60,7 @@ const MOCK_SALONS: Salon[] = [
     lng: 78.3914,
     tags: ['Eco Skincare', 'Hair Color', 'Spa'],
     image: PlaceHolderImages.find(img => img.id === 'green-trends')?.imageUrl || '',
-    imageHint: 'clean salon interior',
+    imageHint: PlaceHolderImages.find(img => img.id === 'green-trends')?.imageHint || 'facial treatment',
     address: 'Kukatpally, Hyderabad'
   },
   {
@@ -72,7 +72,7 @@ const MOCK_SALONS: Salon[] = [
     lng: 78.3498,
     tags: ['Global Styling', 'Advanced Color'],
     image: PlaceHolderImages.find(img => img.id === 'toni-guy')?.imageUrl || '',
-    imageHint: 'high-end hair studio',
+    imageHint: PlaceHolderImages.find(img => img.id === 'toni-guy')?.imageHint || 'hair styling',
     address: 'Gachibowli, Hyderabad'
   },
   {
@@ -84,7 +84,7 @@ const MOCK_SALONS: Salon[] = [
     lng: 78.4842,
     tags: ['Hair Design', 'Bridal Makeup'],
     image: PlaceHolderImages.find(img => img.id === 'jawed-habib')?.imageUrl || '',
-    imageHint: 'professional hair care',
+    imageHint: PlaceHolderImages.find(img => img.id === 'jawed-habib')?.imageHint || 'hair stylist',
     address: 'Himayat Nagar, Hyderabad'
   },
   {
@@ -96,7 +96,7 @@ const MOCK_SALONS: Salon[] = [
     lng: 78.3915,
     tags: ['Lakme Expert', 'Makeover', 'Skin'],
     image: PlaceHolderImages.find(img => img.id === 'lakme-salon')?.imageUrl || '',
-    imageHint: 'branded beauty salon',
+    imageHint: PlaceHolderImages.find(img => img.id === 'lakme-salon')?.imageHint || 'makeup artist',
     address: 'Madhapur, Hyderabad'
   },
   {
@@ -108,7 +108,7 @@ const MOCK_SALONS: Salon[] = [
     lng: 78.3587,
     tags: ['Premium Spa', 'Wellness', 'Styling'],
     image: PlaceHolderImages.find(img => img.id === 'bounce-salon')?.imageUrl || '',
-    imageHint: 'premium spa room',
+    imageHint: PlaceHolderImages.find(img => img.id === 'bounce-salon')?.imageHint || 'wellness spa',
     address: 'Kondapur, Hyderabad'
   },
   {
@@ -120,7 +120,7 @@ const MOCK_SALONS: Salon[] = [
     lng: 78.4400,
     tags: ['Celebrity Style', 'Red Carpet', 'Nails'],
     image: PlaceHolderImages.find(img => img.id === 'page3-salon')?.imageUrl || '',
-    imageHint: 'luxury beauty aesthetic',
+    imageHint: PlaceHolderImages.find(img => img.id === 'page3-salon')?.imageHint || 'bridal makeup',
     address: 'Banjara Hills, Hyderabad'
   }
 ];
@@ -155,7 +155,6 @@ export default function SalonListings() {
           });
         },
         () => {
-          // Default to Hyderabad City Center on denial or error
           setUserLocation(HYDERABAD_CENTER);
         }
       );
