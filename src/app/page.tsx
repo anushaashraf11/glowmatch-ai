@@ -18,7 +18,7 @@ export default function Home() {
           <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-8">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-semibold uppercase tracking-wider border border-primary/20">
-                <Sparkles className="w-3 h-3" />
+                <Sparkles className="w-3.5 h-3.5" />
                 <span>AI-Powered Beauty</span>
               </div>
               <h1 className="font-headline text-5xl md:text-7xl font-bold leading-tight">
@@ -28,16 +28,16 @@ export default function Home() {
                 Upload a selfie and let our AI analyze your features to recommend perfect treatments, hairstyles, and skincare routines tailored for your unique Indian skin profile.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
-                <Link href="/analysis">
-                  <Button size="lg" className="rounded-2xl px-8 h-14 bg-primary text-lg gap-2 shadow-lg shadow-primary/25">
+                <Button size="lg" className="rounded-2xl px-8 h-14 bg-primary text-lg gap-2 shadow-lg shadow-primary/25" asChild>
+                  <Link href="/analysis">
                     Start AI Analysis <ArrowRight className="w-5 h-5" />
-                  </Button>
-                </Link>
-                <Link href="/salons">
-                  <Button size="lg" variant="outline" className="rounded-2xl px-8 h-14 text-lg bg-white/50 border-white/40">
+                  </Link>
+                </Button>
+                <Button size="lg" variant="outline" className="rounded-2xl px-8 h-14 text-lg bg-white/50 border-white/40" asChild>
+                  <Link href="/salons">
                     Find Salons in Hyderabad
-                  </Button>
-                </Link>
+                  </Link>
+                </Button>
               </div>
               <div className="flex items-center gap-4 text-sm text-muted-foreground pt-4">
                 <div className="flex -space-x-2">

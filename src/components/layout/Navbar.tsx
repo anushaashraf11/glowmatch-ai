@@ -27,11 +27,15 @@ export function Navbar() {
         </div>
 
         <div className="flex items-center gap-3">
-          <Button variant="ghost" size="icon" className="md:hidden w-8 h-8 rounded-full hover:bg-white/40">
-            <User className="w-4 h-4" />
+          <Button variant="ghost" size="icon" className="md:hidden w-8 h-8 rounded-full hover:bg-white/40" asChild>
+            <Link href="/analysis">
+              <User className="w-4 h-4" />
+            </Link>
           </Button>
-          <Button size="sm" className="hidden md:flex rounded-full bg-primary hover:bg-primary/90 px-5 h-8 text-xs font-bold shadow-sm shadow-primary/20">
-            Get Started
+          <Button size="sm" className="hidden md:flex rounded-full bg-primary hover:bg-primary/90 px-5 h-8 text-xs font-bold shadow-sm shadow-primary/20" asChild>
+            <Link href="/analysis">
+              Get Started
+            </Link>
           </Button>
         </div>
       </div>

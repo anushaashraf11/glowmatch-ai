@@ -7,7 +7,6 @@ import { analyzeFace, type AnalyzeFaceOutput } from '@/ai/flows/ai-face-analysis
 import { generatePersonalizedBeautyRecommendations, type PersonalizedBeautyRecommendationsOutput } from '@/ai/flows/personalized-beauty-recommendations-flow';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Progress } from '@/components/ui/progress';
 
 export default function FaceAnalyzer() {
   const [image, setImage] = useState<string | null>(null);
@@ -38,7 +37,7 @@ export default function FaceAnalyzer() {
         skinTone: result.skinTone,
         faceShape: result.faceShape,
         skinConcerns: [result.skinType, "hydration"],
-        hairType: "wavy" // Defaulting for demo, could be added to analysis flow
+        hairType: "wavy" // Defaulting for demo
       });
       setRecommendations(recs);
     } catch (error) {
@@ -158,11 +157,11 @@ export default function FaceAnalyzer() {
         </div>
 
         <div className="flex justify-center pt-8">
-          <Link href="/salons">
-            <Button size="lg" className="rounded-2xl h-16 px-12 bg-primary shadow-2xl shadow-primary/30 gap-3 text-lg font-bold group">
+          <Button size="lg" className="rounded-2xl h-16 px-12 bg-primary shadow-2xl shadow-primary/30 gap-3 text-lg font-bold group" asChild>
+            <Link href="/salons">
               Book Your AI Match <ArrowRightIcon className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            </Button>
-          </Link>
+            </Link>
+          </Button>
         </div>
       </div>
     );
