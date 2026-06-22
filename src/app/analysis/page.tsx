@@ -5,7 +5,7 @@ export default function AnalysisPage() {
   return (
     <div className="min-h-screen">
       <Navbar />
-      <main className="pt-32 pb-20 px-6 max-w-4xl mx-auto">
+      <main className="pt-24 pb-20 px-6 max-w-4xl mx-auto">
         <div className="text-center mb-12 space-y-4">
           <h1 className="font-headline text-4xl md:text-5xl font-bold">AI Face Analysis</h1>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">

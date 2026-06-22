@@ -14,7 +14,7 @@ export default function Home() {
       
       <main>
         {/* Hero Section */}
-        <section className="pt-32 pb-20 px-6">
+        <section className="pt-24 pb-20 px-6">
           <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-8">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-semibold uppercase tracking-wider border border-primary/20">
@@ -111,7 +111,7 @@ export default function Home() {
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
           <div className="flex items-center gap-2">
             <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center text-white font-bold">G</div>
-            <span className="font-headline font-bold text-xl tracking-tight">GlowMatch AI</span>
+            <span className="font-headline font-bold text-xl tracking-tight text-gradient">GlowMatch AI</span>
           </div>
           <p className="text-sm text-muted-foreground">© 2024 GlowMatch AI. All rights reserved.</p>
           <div className="flex gap-8 text-sm text-muted-foreground">
