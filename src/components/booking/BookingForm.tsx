@@ -8,19 +8,22 @@ import { CheckCircle2, Clock, Scissors, CreditCard, ChevronRight } from 'lucide-
 import { Progress } from '@/components/ui/progress';
 
 const SERVICES = [
-  { id: '1', name: 'AI Matched Haircut', price: '$85', duration: '60 min', description: 'Cut and style based on your facial structure analysis.' },
-  { id: '2', name: 'Glow Signature Facial', price: '$120', duration: '45 min', description: 'Treatments optimized for your detected skin tone.' },
-  { id: '3', name: 'Precision Color', price: '$150+', duration: '120 min', description: 'Advanced coloring tailored to your natural undertones.' },
+  { id: '1', name: 'AI Matched Haircut', price: '₹1,499', numericPrice: 1499, duration: '60 min', description: 'Cut and style based on your facial structure analysis.' },
+  { id: '2', name: 'Glow Signature Facial', price: '₹3,499', numericPrice: 3499, duration: '45 min', description: 'Treatments optimized for your detected skin tone.' },
+  { id: '3', name: 'Precision Color', price: '₹5,999', numericPrice: 5999, duration: '120 min', description: 'Advanced coloring tailored to your natural undertones.' },
 ];
 
 const TIME_SLOTS = ['09:00 AM', '10:30 AM', '01:00 PM', '02:30 PM', '04:00 PM', '05:30 PM'];
+const SERVICE_FEE = 99;
 
 export default function BookingForm({ salonId }: { salonId: string }) {
   const [step, setStep] = useState(1);
-  const [selectedService, setSelectedService] = useState<string | null>(null);
+  const [selectedServiceId, setSelectedServiceId] = useState<string | null>(null);
   const [date, setDate] = useState<Date | undefined>(new Date());
   const [selectedTime, setSelectedTime] = useState<string | null>(null);
 
+  const selectedService = SERVICES.find(s => s.id === selectedServiceId);
+  const total = (selectedService?.numericPrice || 0) + SERVICE_FEE;
   const progressValue = (step / 3) * 100;
 
   if (step === 4) {
@@ -36,7 +39,7 @@ export default function BookingForm({ salonId }: { salonId: string }) {
         <Card className="glass p-8 max-w-md mx-auto rounded-[2rem] text-left space-y-4">
           <div className="flex justify-between border-b border-primary/10 pb-4">
             <span className="text-muted-foreground">Service</span>
-            <span className="font-bold">{SERVICES.find(s => s.id === selectedService)?.name}</span>
+            <span className="font-bold">{selectedService?.name}</span>
           </div>
           <div className="flex justify-between border-b border-primary/10 pb-4">
             <span className="text-muted-foreground">Date</span>
@@ -75,8 +78,8 @@ export default function BookingForm({ salonId }: { salonId: string }) {
             {SERVICES.map((service) => (
               <div 
                 key={service.id}
-                onClick={() => setSelectedService(service.id)}
-                className={`glass p-6 rounded-3xl cursor-pointer border-2 transition-all ${selectedService === service.id ? 'border-primary ring-2 ring-primary/20' : 'border-transparent hover:border-primary/30'}`}
+                onClick={() => setSelectedServiceId(service.id)}
+                className={`glass p-6 rounded-3xl cursor-pointer border-2 transition-all ${selectedServiceId === service.id ? 'border-primary ring-2 ring-primary/20' : 'border-transparent hover:border-primary/30'}`}
               >
                 <div className="flex justify-between items-start mb-2">
                   <h3 className="font-headline text-xl font-bold">{service.name}</h3>
@@ -129,7 +132,7 @@ export default function BookingForm({ salonId }: { salonId: string }) {
                     <Scissors className="w-6 h-6 text-primary" />
                   </div>
                   <div>
-                    <h4 className="font-bold">{SERVICES.find(s => s.id === selectedService)?.name}</h4>
+                    <h4 className="font-bold">{selectedService?.name}</h4>
                     <p className="text-sm text-muted-foreground">{date?.toLocaleDateString()} at {selectedTime}</p>
                   </div>
                 </div>
@@ -139,7 +142,7 @@ export default function BookingForm({ salonId }: { salonId: string }) {
                   </div>
                   <div>
                     <h4 className="font-bold">Payment Method</h4>
-                    <p className="text-sm text-muted-foreground">Apple Pay ending in •••• 4242</p>
+                    <p className="text-sm text-muted-foreground">UPI Payment (GPay/PhonePe)</p>
                   </div>
                 </div>
               </div>
@@ -147,15 +150,15 @@ export default function BookingForm({ salonId }: { salonId: string }) {
               <div className="pt-6 border-t border-primary/10 space-y-2">
                 <div className="flex justify-between text-sm">
                   <span>Subtotal</span>
-                  <span>{SERVICES.find(s => s.id === selectedService)?.price}</span>
+                  <span>{selectedService?.price}</span>
                 </div>
                 <div className="flex justify-between text-sm">
-                  <span>Service Fee</span>
-                  <span>$2.50</span>
+                  <span>Booking Fee</span>
+                  <span>₹{SERVICE_FEE}</span>
                 </div>
                 <div className="flex justify-between font-bold text-lg pt-2">
                   <span>Total</span>
-                  <span>$87.50</span>
+                  <span>₹{total.toLocaleString('en-IN')}</span>
                 </div>
               </div>
             </Card>
@@ -176,7 +179,7 @@ export default function BookingForm({ salonId }: { salonId: string }) {
           className="rounded-xl px-10 h-12 bg-primary gap-2"
           onClick={() => setStep(s => s + 1)}
           disabled={
-            (step === 1 && !selectedService) || 
+            (step === 1 && !selectedServiceId) || 
             (step === 2 && (!date || !selectedTime))
           }
         >
