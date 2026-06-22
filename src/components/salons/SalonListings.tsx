@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useEffect, useState } from 'react';
@@ -23,69 +22,91 @@ interface Salon {
 const MOCK_SALONS: Salon[] = [
   {
     id: '1',
-    name: 'Orchid Beauty Studio',
-    rating: 4.9,
-    reviews: 128,
-    distance: '0.8 miles',
-    tags: ['Hair', 'Skin Care'],
-    image: PlaceHolderImages.find(img => img.id === 'salon-orchid')?.imageUrl || '',
-    imageHint: PlaceHolderImages.find(img => img.id === 'salon-orchid')?.imageHint || 'beauty studio',
-    address: '123 Bloom St, Downtown'
+    name: 'Mirrors Luxury Salon & Spa',
+    rating: 4.7,
+    reviews: 842,
+    distance: '0.8 km',
+    tags: ['Luxury Spa', 'Skin Care', 'Bridal'],
+    image: PlaceHolderImages.find(img => img.id === 'mirrors-luxury')?.imageUrl || '',
+    imageHint: 'luxury spa interior',
+    address: 'Jubilee Hills, Hyderabad'
   },
   {
     id: '2',
-    name: 'The Glass House Spa',
-    rating: 4.8,
-    reviews: 215,
-    distance: '1.2 miles',
-    tags: ['Facials', 'Massage'],
-    image: PlaceHolderImages.find(img => img.id === 'salon-glasshouse')?.imageUrl || '',
-    imageHint: PlaceHolderImages.find(img => img.id === 'salon-glasshouse')?.imageHint || 'spa treatment',
-    address: '456 Crystal Ave'
+    name: 'Naturals Salon',
+    rating: 4.5,
+    reviews: 1250,
+    distance: '1.2 km',
+    tags: ['Haircut', 'Facials', 'Makeup'],
+    image: PlaceHolderImages.find(img => img.id === 'naturals-salon')?.imageUrl || '',
+    imageHint: 'modern hair salon',
+    address: 'Banjara Hills, Hyderabad'
   },
   {
     id: '3',
-    name: 'Prism Nail Art',
-    rating: 4.7,
-    reviews: 94,
-    distance: '2.4 miles',
-    tags: ['Nails', 'Lashes'],
-    image: PlaceHolderImages.find(img => img.id === 'salon-prism')?.imageUrl || '',
-    imageHint: PlaceHolderImages.find(img => img.id === 'salon-prism')?.imageHint || 'nail art',
-    address: '789 Rainbow Blvd'
+    name: 'Green Trends Salon',
+    rating: 4.4,
+    reviews: 920,
+    distance: '2.5 km',
+    tags: ['Eco Skincare', 'Hair Color', 'Spa'],
+    image: PlaceHolderImages.find(img => img.id === 'green-trends')?.imageUrl || '',
+    imageHint: 'clean salon interior',
+    address: 'Kukatpally, Hyderabad'
   },
   {
     id: '4',
-    name: 'Elite Grooming Co.',
-    rating: 5.0,
-    reviews: 56,
-    distance: '3.1 miles',
-    tags: ['Barber', 'Treatments'],
-    image: PlaceHolderImages.find(img => img.id === 'salon-elite')?.imageUrl || '',
-    imageHint: PlaceHolderImages.find(img => img.id === 'salon-elite')?.imageHint || 'barber shop',
-    address: '101 King St'
+    name: 'Toni & Guy',
+    rating: 4.6,
+    reviews: 512,
+    distance: '3.1 km',
+    tags: ['Global Styling', 'Advanced Color'],
+    image: PlaceHolderImages.find(img => img.id === 'toni-guy')?.imageUrl || '',
+    imageHint: 'high-end hair studio',
+    address: 'Gachibowli, Hyderabad'
   },
   {
     id: '5',
-    name: 'Radiance Aesthetic',
-    rating: 4.6,
-    reviews: 142,
-    distance: '3.8 miles',
-    tags: ['Skin Care', 'HydraFacial'],
-    image: PlaceHolderImages.find(img => img.id === 'salon-radiance')?.imageUrl || '',
-    imageHint: PlaceHolderImages.find(img => img.id === 'salon-radiance')?.imageHint || 'skincare clinic',
-    address: '202 Sun Plaza'
+    name: 'Jawed Habib Hair & Beauty',
+    rating: 4.4,
+    reviews: 1560,
+    distance: '4.6 km',
+    tags: ['Hair Design', 'Bridal Makeup'],
+    image: PlaceHolderImages.find(img => img.id === 'jawed-habib')?.imageUrl || '',
+    imageHint: 'professional hair care',
+    address: 'Himayat Nagar, Hyderabad'
   },
   {
     id: '6',
-    name: 'Velvet Hair Lounge',
-    rating: 4.9,
-    reviews: 312,
-    distance: '4.5 miles',
-    tags: ['Color', 'Balayage'],
-    image: PlaceHolderImages.find(img => img.id === 'salon-velvet')?.imageUrl || '',
-    imageHint: PlaceHolderImages.find(img => img.id === 'salon-velvet')?.imageHint || 'hair coloring',
-    address: '303 Velvet Way'
+    name: 'Lakmé Salon',
+    rating: 4.5,
+    reviews: 1100,
+    distance: '5.2 km',
+    tags: ['Lakme Expert', 'Makeover', 'Skin'],
+    image: PlaceHolderImages.find(img => img.id === 'lakme-salon')?.imageUrl || '',
+    imageHint: 'branded beauty salon',
+    address: 'Madhapur, Hyderabad'
+  },
+  {
+    id: '7',
+    name: 'Bounce Salon & Spa',
+    rating: 4.6,
+    reviews: 740,
+    distance: '6.0 km',
+    tags: ['Premium Spa', 'Wellness', 'Styling'],
+    image: PlaceHolderImages.find(img => img.id === 'bounce-salon')?.imageUrl || '',
+    imageHint: 'premium spa room',
+    address: 'Kondapur, Hyderabad'
+  },
+  {
+    id: '8',
+    name: 'Page 3 Luxury Salon',
+    rating: 4.5,
+    reviews: 630,
+    distance: '2.5 km',
+    tags: ['Celebrity Style', 'Red Carpet', 'Nails'],
+    image: PlaceHolderImages.find(img => img.id === 'page3-salon')?.imageUrl || '',
+    imageHint: 'luxury beauty aesthetic',
+    address: 'Banjara Hills, Hyderabad'
   }
 ];
 
@@ -122,7 +143,7 @@ export default function SalonListings() {
               <div>
                 <h3 className="font-headline text-xl font-bold mb-1">{salon.name}</h3>
                 <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
-                  <MapPin className="w-3 h-3" />
+                  <MapPin className="w-3 h-3 text-primary" />
                   <span>{salon.address}</span>
                 </div>
               </div>
@@ -139,7 +160,7 @@ export default function SalonListings() {
             <div className="mt-auto pt-4 border-t border-primary/5 flex items-center justify-between">
               <div className="flex items-center gap-2 text-xs font-medium text-muted-foreground">
                 <Clock className="w-3.5 h-3.5" />
-                <span>Next available: 2 PM</span>
+                <span>Available Today</span>
               </div>
               <Link href={`/booking/${salon.id}`}>
                 <Button size="sm" className="rounded-xl px-4 gap-2 bg-primary hover:bg-primary/90">

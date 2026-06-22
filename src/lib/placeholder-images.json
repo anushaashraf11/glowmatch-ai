@@ -7,46 +7,52 @@
       "imageHint": "luxury salon"
     },
     {
-      "id": "salon-orchid",
-      "description": "Orchid Beauty Studio main treatment area",
-      "imageUrl": "https://picsum.photos/seed/orchid-beauty/600/400",
-      "imageHint": "beauty studio"
+      "id": "mirrors-luxury",
+      "description": "Mirrors Luxury Salon & Spa ultra-modern interior",
+      "imageUrl": "https://picsum.photos/seed/mirrors-hyd/600/400",
+      "imageHint": "luxury spa"
     },
     {
-      "id": "salon-glasshouse",
-      "description": "The Glass House Spa tranquil treatment room",
-      "imageUrl": "https://picsum.photos/seed/glass-spa/600/400",
-      "imageHint": "spa treatment"
+      "id": "naturals-salon",
+      "description": "Naturals Salon modern styling station",
+      "imageUrl": "https://picsum.photos/seed/naturals-hyd/600/400",
+      "imageHint": "modern salon"
     },
     {
-      "id": "salon-prism",
-      "description": "Prism Nail Art workstation",
-      "imageUrl": "https://picsum.photos/seed/prism-nails/600/400",
-      "imageHint": "nail studio"
+      "id": "green-trends",
+      "description": "Green Trends eco-friendly salon environment",
+      "imageUrl": "https://picsum.photos/seed/greentrends-hyd/600/400",
+      "imageHint": "eco salon"
     },
     {
-      "id": "salon-elite",
-      "description": "Elite Grooming luxury barber station",
-      "imageUrl": "https://picsum.photos/seed/elite-barber/600/400",
-      "imageHint": "barber shop"
+      "id": "toni-guy",
+      "description": "Toni & Guy international style hair studio",
+      "imageUrl": "https://picsum.photos/seed/toni-guy-hyd/600/400",
+      "imageHint": "hair studio"
     },
     {
-      "id": "salon-radiance",
-      "description": "Radiance Aesthetic clinical skincare room",
-      "imageUrl": "https://picsum.photos/seed/radiance-skin/600/400",
-      "imageHint": "skincare clinic"
+      "id": "jawed-habib",
+      "description": "Jawed Habib professional hair care suite",
+      "imageUrl": "https://picsum.photos/seed/jawed-habib-hyd/600/400",
+      "imageHint": "hairdresser"
     },
     {
-      "id": "salon-velvet",
-      "description": "Velvet Hair Lounge coloring station",
-      "imageUrl": "https://picsum.photos/seed/velvet-hair/600/400",
-      "imageHint": "hair coloring"
+      "id": "lakme-salon",
+      "description": "Lakmé Salon beauty and makeup station",
+      "imageUrl": "https://picsum.photos/seed/lakme-hyd/600/400",
+      "imageHint": "beauty salon"
     },
     {
-      "id": "skincare-prep",
-      "description": "Organic skincare products on a marble table",
-      "imageUrl": "https://picsum.photos/seed/beauty-products/600/400",
-      "imageHint": "beauty products"
+      "id": "bounce-salon",
+      "description": "Bounce Salon & Spa luxury treatment room",
+      "imageUrl": "https://picsum.photos/seed/bounce-hyd/600/400",
+      "imageHint": "premium spa"
+    },
+    {
+      "id": "page3-salon",
+      "description": "Page 3 Luxury Salon high-end reception",
+      "imageUrl": "https://picsum.photos/seed/page3-hyd/600/400",
+      "imageHint": "luxury aesthetic"
     }
   ]
 }
