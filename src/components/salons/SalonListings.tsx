@@ -23,7 +23,8 @@ interface SalonWithDistance extends Salon {
   calculatedDistance: string;
 }
 
-const HYDERABAD_CENTER = { lat: 17.3850, lng: 78.4867 };
+// Hyderabad Center (Abids/Secretariat Area)
+const HYDERABAD_CENTER = { lat: 17.4065, lng: 78.4691 };
 
 const MOCK_SALONS: Salon[] = [
   {
@@ -34,7 +35,7 @@ const MOCK_SALONS: Salon[] = [
     lat: 17.4326,
     lng: 78.4071,
     tags: ['Luxury Spa', 'Skin Care', 'Bridal'],
-    address: 'Jubilee Hills, Hyderabad',
+    address: 'Road No. 1, Jubilee Hills',
     icon: Flower2,
     gradient: 'from-pink-100 to-rose-200'
   },
@@ -58,7 +59,7 @@ const MOCK_SALONS: Salon[] = [
     lat: 17.4933,
     lng: 78.3914,
     tags: ['Eco Skincare', 'Hair Color', 'Spa'],
-    address: 'Kukatpally, Hyderabad',
+    address: 'KPN Colony, Kukatpally',
     icon: Droplets,
     gradient: 'from-emerald-50 to-teal-100'
   },
@@ -70,7 +71,7 @@ const MOCK_SALONS: Salon[] = [
     lat: 17.4448,
     lng: 78.3498,
     tags: ['Global Styling', 'Advanced Color'],
-    address: 'Gachibowli, Hyderabad',
+    address: 'Financial District, Gachibowli',
     icon: Scissors,
     gradient: 'from-slate-100 to-blue-200'
   },
@@ -82,7 +83,7 @@ const MOCK_SALONS: Salon[] = [
     lat: 17.3993,
     lng: 78.4842,
     tags: ['Hair Design', 'Bridal Makeup'],
-    address: 'Himayat Nagar, Hyderabad',
+    address: 'Main Road, Himayat Nagar',
     icon: Scissors,
     gradient: 'from-orange-50 to-amber-100'
   },
@@ -94,7 +95,7 @@ const MOCK_SALONS: Salon[] = [
     lat: 17.4483,
     lng: 78.3915,
     tags: ['Lakme Expert', 'Makeover', 'Skin'],
-    address: 'Madhapur, Hyderabad',
+    address: 'Cyber Towers Area, Madhapur',
     icon: Palette,
     gradient: 'from-violet-100 to-fuchsia-100'
   },
@@ -106,7 +107,7 @@ const MOCK_SALONS: Salon[] = [
     lat: 17.4623,
     lng: 78.3587,
     tags: ['Premium Spa', 'Wellness', 'Styling'],
-    address: 'Kondapur, Hyderabad',
+    address: 'Sarath City Mall Area, Kondapur',
     icon: Zap,
     gradient: 'from-sky-50 to-cyan-100'
   },
@@ -118,7 +119,7 @@ const MOCK_SALONS: Salon[] = [
     lat: 17.4150,
     lng: 78.4400,
     tags: ['Celebrity Style', 'Red Carpet', 'Nails'],
-    address: 'Banjara Hills, Hyderabad',
+    address: 'Road No. 12, Banjara Hills',
     icon: Heart,
     gradient: 'from-pink-50 to-rose-100'
   }
@@ -154,6 +155,7 @@ export default function SalonListings() {
           });
         },
         () => {
+          // If denied or error, default to Hyderabad City Center
           setUserLocation(HYDERABAD_CENTER);
         }
       );
@@ -166,13 +168,24 @@ export default function SalonListings() {
     if (userLocation) {
       const updatedSalons = MOCK_SALONS.map(salon => {
         const dist = calculateDistance(userLocation.lat, userLocation.lng, salon.lat, salon.lng);
+        // Display in meters if less than 1km, otherwise in km
+        const formattedDist = dist < 1 
+          ? `${(dist * 1000).toFixed(0)} m` 
+          : `${dist.toFixed(1)} km`;
+        
         return {
           ...salon,
-          calculatedDistance: dist < 1 ? `${(dist * 1000).toFixed(0)} m` : `${dist.toFixed(1)} km`
+          calculatedDistance: formattedDist
         };
       });
-      // Sort by distance
-      updatedSalons.sort((a, b) => parseFloat(a.calculatedDistance) - parseFloat(b.calculatedDistance));
+
+      // Sort by actual numeric distance
+      updatedSalons.sort((a, b) => {
+        const distA = calculateDistance(userLocation.lat, userLocation.lng, a.lat, a.lng);
+        const distB = calculateDistance(userLocation.lat, userLocation.lng, b.lat, b.lng);
+        return distA - distB;
+      });
+      
       setSalons(updatedSalons);
     }
   }, [userLocation]);

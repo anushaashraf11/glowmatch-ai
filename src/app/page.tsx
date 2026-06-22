@@ -25,7 +25,7 @@ export default function Home() {
                 Reveal Your <span className="text-gradient">Natural</span> Glow.
               </h1>
               <p className="text-lg text-muted-foreground max-w-lg leading-relaxed">
-                Upload a selfie and let our AI analyze your features to recommend perfect treatments, hairstyles, and skincare routines tailored just for you.
+                Upload a selfie and let our AI analyze your features to recommend perfect treatments, hairstyles, and skincare routines tailored for your unique Indian skin profile.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Link href="/analysis">
@@ -35,7 +35,7 @@ export default function Home() {
                 </Link>
                 <Link href="/salons">
                   <Button size="lg" variant="outline" className="rounded-2xl px-8 h-14 text-lg bg-white/50 border-white/40">
-                    Find Salons Near Me
+                    Find Salons in Hyderabad
                   </Button>
                 </Link>
               </div>
@@ -47,7 +47,7 @@ export default function Home() {
                     </div>
                   ))}
                 </div>
-                <p>Trusted by 10k+ beauty enthusiasts</p>
+                <p>Trusted by 10k+ beauty enthusiasts across India</p>
               </div>
             </div>
 
@@ -71,7 +71,7 @@ export default function Home() {
                     </div>
                     <div>
                       <h4 className="font-semibold text-lg">AI Matched</h4>
-                      <p className="text-sm text-muted-foreground">Orchid Skin Undertones Found</p>
+                      <p className="text-sm text-muted-foreground">Warm Olive Undertones Found</p>
                     </div>
                   </div>
                 </div>
@@ -93,7 +93,7 @@ export default function Home() {
                 </div>
                 <div className="space-y-1">
                   <h3 className="text-3xl md:text-4xl font-bold font-headline text-gradient">10,000+</h3>
-                  <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground">Beauty Consultations</p>
+                  <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground">Consultations</p>
                 </div>
               </div>
               <div className="space-y-3">
@@ -120,7 +120,7 @@ export default function Home() {
                 </div>
                 <div className="space-y-1">
                   <h3 className="text-3xl md:text-4xl font-bold font-headline text-gradient">50,000+</h3>
-                  <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground">Bookings Completed</p>
+                  <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground">Bookings Done</p>
                 </div>
               </div>
             </div>
@@ -131,7 +131,7 @@ export default function Home() {
         <section className="py-24 bg-white/30 backdrop-blur-sm">
           <div className="max-w-6xl mx-auto px-6 text-center mb-16">
             <h2 className="font-headline text-3xl md:text-5xl font-bold mb-4">How GlowMatch Works</h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">Luxury beauty meets cutting-edge technology to simplify your glow-up journey.</p>
+            <p className="text-muted-foreground max-w-2xl mx-auto">Luxury beauty meets cutting-edge technology to simplify your glow-up journey in Hyderabad.</p>
           </div>
 
           <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -148,7 +148,7 @@ export default function Home() {
             <FeatureCard 
               icon={<Scissors className="w-8 h-8 text-primary" />}
               title="Step 3: Precise Booking"
-              description="Connect with top-rated nearby salons and book your AI-matched treatment instantly."
+              description="Connect with top-rated Hyderabad salons and book your AI-matched treatment instantly."
             />
           </div>
         </section>
@@ -158,9 +158,9 @@ export default function Home() {
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
           <div className="flex items-center gap-2">
             <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center text-white font-bold">G</div>
-            <span className="font-headline font-bold text-xl tracking-tight text-gradient">GlowMatch AI</span>
+            <span className="font-headline font-bold text-xl tracking-tight text-gradient">GlowMatch AI Hyderabad</span>
           </div>
-          <p className="text-sm text-muted-foreground">© 2024 GlowMatch AI. All rights reserved.</p>
+          <p className="text-sm text-muted-foreground">© 2024 GlowMatch AI India. All rights reserved.</p>
           <div className="flex gap-8 text-sm text-muted-foreground">
             <Link href="#" className="hover:text-primary">Privacy</Link>
             <Link href="#" className="hover:text-primary">Terms</Link>
