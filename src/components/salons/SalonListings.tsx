@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useEffect, useState } from 'react';
@@ -15,6 +16,7 @@ interface Salon {
   distance: string;
   tags: string[];
   image: string;
+  imageHint: string;
   address: string;
 }
 
@@ -26,7 +28,8 @@ const MOCK_SALONS: Salon[] = [
     reviews: 128,
     distance: '0.8 miles',
     tags: ['Hair', 'Skin Care'],
-    image: PlaceHolderImages.find(img => img.id === 'salon-1')?.imageUrl || '',
+    image: PlaceHolderImages.find(img => img.id === 'salon-orchid')?.imageUrl || '',
+    imageHint: PlaceHolderImages.find(img => img.id === 'salon-orchid')?.imageHint || 'beauty studio',
     address: '123 Bloom St, Downtown'
   },
   {
@@ -36,7 +39,8 @@ const MOCK_SALONS: Salon[] = [
     reviews: 215,
     distance: '1.2 miles',
     tags: ['Facials', 'Massage'],
-    image: PlaceHolderImages.find(img => img.id === 'salon-2')?.imageUrl || '',
+    image: PlaceHolderImages.find(img => img.id === 'salon-glasshouse')?.imageUrl || '',
+    imageHint: PlaceHolderImages.find(img => img.id === 'salon-glasshouse')?.imageHint || 'spa treatment',
     address: '456 Crystal Ave'
   },
   {
@@ -46,7 +50,8 @@ const MOCK_SALONS: Salon[] = [
     reviews: 94,
     distance: '2.4 miles',
     tags: ['Nails', 'Lashes'],
-    image: PlaceHolderImages.find(img => img.id === 'salon-3')?.imageUrl || '',
+    image: PlaceHolderImages.find(img => img.id === 'salon-prism')?.imageUrl || '',
+    imageHint: PlaceHolderImages.find(img => img.id === 'salon-prism')?.imageHint || 'nail art',
     address: '789 Rainbow Blvd'
   },
   {
@@ -56,7 +61,8 @@ const MOCK_SALONS: Salon[] = [
     reviews: 56,
     distance: '3.1 miles',
     tags: ['Barber', 'Treatments'],
-    image: 'https://picsum.photos/seed/salon4/600/400',
+    image: PlaceHolderImages.find(img => img.id === 'salon-elite')?.imageUrl || '',
+    imageHint: PlaceHolderImages.find(img => img.id === 'salon-elite')?.imageHint || 'barber shop',
     address: '101 King St'
   },
   {
@@ -66,7 +72,8 @@ const MOCK_SALONS: Salon[] = [
     reviews: 142,
     distance: '3.8 miles',
     tags: ['Skin Care', 'HydraFacial'],
-    image: 'https://picsum.photos/seed/salon5/600/400',
+    image: PlaceHolderImages.find(img => img.id === 'salon-radiance')?.imageUrl || '',
+    imageHint: PlaceHolderImages.find(img => img.id === 'salon-radiance')?.imageHint || 'skincare clinic',
     address: '202 Sun Plaza'
   },
   {
@@ -76,7 +83,8 @@ const MOCK_SALONS: Salon[] = [
     reviews: 312,
     distance: '4.5 miles',
     tags: ['Color', 'Balayage'],
-    image: 'https://picsum.photos/seed/salon6/600/400',
+    image: PlaceHolderImages.find(img => img.id === 'salon-velvet')?.imageUrl || '',
+    imageHint: PlaceHolderImages.find(img => img.id === 'salon-velvet')?.imageHint || 'hair coloring',
     address: '303 Velvet Way'
   }
 ];
@@ -85,7 +93,6 @@ export default function SalonListings() {
   const [salons, setSalons] = useState<Salon[]>([]);
 
   useEffect(() => {
-    // Mimic distance loading
     setSalons(MOCK_SALONS);
   }, []);
 
@@ -99,6 +106,7 @@ export default function SalonListings() {
               alt={salon.name} 
               fill 
               className="object-cover group-hover:scale-105 transition-transform duration-500"
+              data-ai-hint={salon.imageHint}
             />
             <div className="absolute top-4 left-4 glass rounded-full px-3 py-1 flex items-center gap-1.5 text-xs font-bold shadow-lg">
               <Star className="w-3.5 h-3.5 fill-yellow-400 text-yellow-400" />

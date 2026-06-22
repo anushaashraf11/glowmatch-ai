@@ -3,32 +3,50 @@
     {
       "id": "hero-beauty",
       "description": "Luxury beauty salon interior with soft pink lighting",
-      "imageUrl": "https://picsum.photos/seed/glow1/1200/800",
-      "imageHint": "beauty salon"
+      "imageUrl": "https://picsum.photos/seed/beauty-hero-1/1200/800",
+      "imageHint": "luxury salon"
     },
     {
-      "id": "salon-1",
-      "description": "Modern hair salon station",
-      "imageUrl": "https://picsum.photos/seed/salon1/600/400",
-      "imageHint": "hair salon"
+      "id": "salon-orchid",
+      "description": "Orchid Beauty Studio main treatment area",
+      "imageUrl": "https://picsum.photos/seed/orchid-beauty/600/400",
+      "imageHint": "beauty studio"
     },
     {
-      "id": "salon-2",
-      "description": "Esthetician treatment room",
-      "imageUrl": "https://picsum.photos/seed/salon2/600/400",
-      "imageHint": "spa room"
+      "id": "salon-glasshouse",
+      "description": "The Glass House Spa tranquil treatment room",
+      "imageUrl": "https://picsum.photos/seed/glass-spa/600/400",
+      "imageHint": "spa treatment"
     },
     {
-      "id": "salon-3",
-      "description": "Nail art studio",
-      "imageUrl": "https://picsum.photos/seed/salon3/600/400",
-      "imageHint": "nail salon"
+      "id": "salon-prism",
+      "description": "Prism Nail Art workstation",
+      "imageUrl": "https://picsum.photos/seed/prism-nails/600/400",
+      "imageHint": "nail studio"
+    },
+    {
+      "id": "salon-elite",
+      "description": "Elite Grooming luxury barber station",
+      "imageUrl": "https://picsum.photos/seed/elite-barber/600/400",
+      "imageHint": "barber shop"
+    },
+    {
+      "id": "salon-radiance",
+      "description": "Radiance Aesthetic clinical skincare room",
+      "imageUrl": "https://picsum.photos/seed/radiance-skin/600/400",
+      "imageHint": "skincare clinic"
+    },
+    {
+      "id": "salon-velvet",
+      "description": "Velvet Hair Lounge coloring station",
+      "imageUrl": "https://picsum.photos/seed/velvet-hair/600/400",
+      "imageHint": "hair coloring"
     },
     {
       "id": "skincare-prep",
       "description": "Organic skincare products on a marble table",
-      "imageUrl": "https://picsum.photos/seed/skin1/600/400",
-      "imageHint": "skincare products"
+      "imageUrl": "https://picsum.photos/seed/beauty-products/600/400",
+      "imageHint": "beauty products"
     }
   ]
 }
